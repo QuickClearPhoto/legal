@@ -28,8 +28,8 @@
   <ul>
     <li>QuickClear processes your photos <strong>entirely on your device</strong>. Your photos never leave your iPhone.</li>
     <li>We do <strong>not</strong> show advertising and we do <strong>not</strong> sell personal data.</li>
-    <li>We use <strong>Firebase Analytics</strong> to collect anonymous, aggregated product-usage data so we can improve the App.</li>
-    <li>The only data exchanged with third parties is what Apple, RevenueCat, and Firebase need to process payments and provide aggregated analytics.</li>
+    <li>We use <strong>Firebase Analytics</strong> for anonymous product-usage data and <strong>AppsFlyer</strong> to measure which marketing channels bring new users.</li>
+    <li>The only data exchanged with third parties is what Apple, RevenueCat, Firebase, and AppsFlyer need to process payments, provide analytics, and attribute installs.</li>
   </ul>
 
   <h2>3. Photos and the Photo Library</h2>
@@ -68,14 +68,28 @@
     <li>An <strong>Firebase App Instance ID</strong>, which is reset when you reinstall the App or reset advertising identifiers</li>
     <li>Approximate location derived from IP address (city-level only; the IP itself is not retained for analytics)</li>
   </ul>
-  <p>We have configured Firebase so that the <strong>Apple Advertising Identifier (IDFA) is not collected</strong>, no Google Ads SDKs are integrated, and data sharing with Google products outside of Analytics is disabled. As a result, no App Tracking Transparency (ATT) prompt is required.</p>
+  <p>We have configured Firebase so that no Google Ads SDKs are integrated and Google Analytics data sharing with other Google products is disabled.</p>
   <p>Firebase data may be processed on Google servers in the United States. Google relies on the EU–U.S. Data Privacy Framework and Standard Contractual Clauses as a legal basis for the transfer. See Google's policies: <a href="https://firebase.google.com/support/privacy">firebase.google.com/support/privacy</a> and <a href="https://policies.google.com/privacy">policies.google.com/privacy</a>.</p>
-  <p>We do not show advertising inside the App and we do not engage in cross-app tracking.</p>
+  <p>We do not show advertising inside the App.</p>
 
-  <h2>7. Children</h2>
+  <h2>7. Attribution and marketing measurement</h2>
+  <p>To understand which marketing channels lead users to install the App, we use <strong>AppsFlyer Ltd.</strong> (Israel) as a mobile measurement and attribution provider. AppsFlyer processes:</p>
+  <ul>
+    <li>An <strong>AppsFlyer ID</strong> (an anonymous app-instance identifier)</li>
+    <li>The <strong>Identifier for Advertisers (IDFA)</strong> — <em>only</em> if you grant permission through the iOS App Tracking Transparency (ATT) prompt; otherwise IDFA is not collected</li>
+    <li>The <strong>Vendor Identifier (IDFV)</strong>, device model, OS version, language, time zone, and IP address (truncated for analytics)</li>
+    <li>The advertising campaign or referral source that led to your install</li>
+    <li>Subscription and purchase events, to measure ad effectiveness</li>
+    <li>Apple's <strong>SKAdNetwork / AdAttributionKit</strong> postbacks, which are privacy-preserving attribution signals managed by iOS</li>
+  </ul>
+  <p>AppsFlyer data is used solely for: install attribution, marketing measurement, fraud prevention, and aggregated reporting. We do not use it to build advertising profiles inside the App.</p>
+  <p>Because AppsFlyer may correlate activity across apps when you grant IDFA permission, the App presents the iOS <strong>App Tracking Transparency</strong> dialog. If you choose <em>"Ask App Not to Track"</em>, no IDFA is collected and attribution falls back to Apple's privacy-preserving SKAdNetwork only.</p>
+  <p>AppsFlyer is headquartered in Israel and may process data on servers in the United States and the European Union. See AppsFlyer's privacy policy: <a href="https://www.appsflyer.com/legal/privacy-policy/">appsflyer.com/legal/privacy-policy</a>.</p>
+
+  <h2>8. Children</h2>
   <p>QuickClear is not directed to children under the age of 13 (or the equivalent age in your jurisdiction). We do not knowingly collect personal data from children.</p>
 
-  <h2>8. Your rights (GDPR / EU)</h2>
+  <h2>9. Your rights (GDPR / EU)</h2>
   <p>Because we do not collect or store personal data on our servers, most data-subject rights under the GDPR are fulfilled by your control over the device. You retain the right to:</p>
   <ul>
     <li>Revoke Photo Library access at any time in iOS Settings → Privacy & Security → Photos</li>
@@ -85,23 +99,23 @@
   </ul>
   <p>For data processed by Apple or RevenueCat, please contact those providers directly.</p>
 
-  <h2>9. California privacy rights (CCPA / CPRA)</h2>
+  <h2>10. California privacy rights (CCPA / CPRA)</h2>
   <p>If you are a California resident, the California Consumer Privacy Act (as amended by the CPRA) gives you the right to know what personal information is collected, the right to delete it, the right to correct it, and the right to opt out of "sale" or "sharing" of personal information.</p>
   <ul>
-    <li><strong>Categories collected:</strong> identifiers (Firebase App Instance ID), internet/electronic activity (app event data), geolocation data (approximate, IP-derived), and commercial information (subscription status).</li>
-    <li><strong>Purpose:</strong> analytics, product improvement, subscription management.</li>
-    <li><strong>"Sale" or "sharing":</strong> We do <strong>not</strong> sell or share personal information for cross-context behavioral advertising.</li>
-    <li><strong>Retention:</strong> Firebase analytics data is retained per Google's default retention; subscription data is retained as long as your subscription is active plus as required by applicable accounting law.</li>
+    <li><strong>Categories collected:</strong> identifiers (Firebase App Instance ID, AppsFlyer ID, and IDFA if you opted in), internet/electronic activity (app event data), geolocation data (approximate, IP-derived), and commercial information (subscription status).</li>
+    <li><strong>Purpose:</strong> analytics, product improvement, install attribution, marketing measurement, and subscription management.</li>
+    <li><strong>"Sale" or "sharing":</strong> We do <strong>not</strong> sell personal information for money. We may "share" limited identifiers (e.g. IDFA, when permitted via ATT) with our attribution provider AppsFlyer for cross-context attribution measurement. You can opt out at any time by selecting <em>"Ask App Not to Track"</em> in the ATT prompt or by disabling IDFA in iOS Settings → Privacy & Security → Tracking.</li>
+    <li><strong>Retention:</strong> Firebase analytics data and AppsFlyer attribution data are retained per the respective provider's default retention. Subscription data is retained as long as your subscription is active plus as required by applicable accounting law.</li>
     <li><strong>Exercising your rights:</strong> email <a href="mailto:quickclearphotocleaner@gmail.com">quickclearphotocleaner@gmail.com</a>. We will verify your request using information reasonably available to us.</li>
   </ul>
 
-  <h2>10. Security</h2>
+  <h2>11. Security</h2>
   <p>Because data stays on your device and is protected by iOS sandboxing and encryption-at-rest, security primarily depends on the security of your device itself (passcode, Face ID/Touch ID, iOS updates).</p>
 
-  <h2>11. Changes to this policy</h2>
+  <h2>12. Changes to this policy</h2>
   <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated "Last updated" date. Material changes will additionally be communicated within the App.</p>
 
-  <h2>12. Contact</h2>
+  <h2>13. Contact</h2>
   <p>Questions or requests: <a href="mailto:quickclearphotocleaner@gmail.com">quickclearphotocleaner@gmail.com</a></p>
 
   <p style="margin-top: 60px; color: #888; font-size: 14px;">© 2026 Daniel Kholodov</p>
